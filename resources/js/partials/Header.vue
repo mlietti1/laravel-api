@@ -16,7 +16,10 @@ export default {
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <router-link class="nav-link active" aria-current="page" :to="{name: 'home'}">Home</router-link>
+                            <router-link class="nav-link" aria-current="page" :to="{name: 'home'}">Home</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" aria-current="page" :to="{name: 'blog'}">Blog</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link class="nav-link" :to="{name: 'about'}">About Us</router-link>
@@ -33,5 +36,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+header{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 5px;
+}
 
 </style>

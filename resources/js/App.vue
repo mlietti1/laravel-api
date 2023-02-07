@@ -14,10 +14,16 @@ export default {
 
 <Header />
 
-<router-view></router-view>
+<main class="container py-3">
+
+    <router-view></router-view>
+</main>
+
 
 </template>
 
-<style>
+<style lang="scss">
+
+@use '../scss/appVue.scss';
 
 </style>

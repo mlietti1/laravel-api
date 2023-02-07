@@ -20,7 +20,17 @@
 
     @if($project->type)
     <span class="mb-3 badge text-bg-info">{{$project->type?->name}}</span>
-    <div class="mb-3"><a  href="{{route('admin.types_project')}}">Go to the list of types</a>
+    <span class="ms-3"><a  href="{{route('admin.types_project')}}">Go to the list of types</a>
+    </span>
+    @endif
+
+    @if(count($project->technologies) > 0)
+    <div class="mb-3">
+    @foreach ($project->technologies as $technology)
+    <span class="mb-3 badge text-bg-warning">{{$technology?->name}}</span>
+    @endforeach
+    <span class="ms-3"><a  href="{{route('admin.technologies.index')}}">Go to the list of technologies</a>
+    </span>
     </div>
     @endif
 
