@@ -1,14 +1,18 @@
 <script>
 
 import axios from 'axios';
+import ProjectCard from '../components/ProjectCard.vue';
 
 export default {
     name: 'Blog',
+    components:{
+        ProjectCard
+    },
     data(){
         return{
             baseUrl: 'http://127.0.0.1:8000/api/',
             projects: [],
-            contentMaxLength: 100,
+
             pagination:{
                 current: null,
                 last: null
@@ -29,12 +33,7 @@ export default {
                     this.pagination.last = res.data.projects.last_page;
                 })
         },
-        truncateText(text){
-            if(text.length > this.contentMaxLength){
-                return text.substr(0, this.contentMaxLength) + '...';
-            }
-            return text;
-        }
+
 
     },
     mounted(){
@@ -49,28 +48,7 @@ export default {
 <h1 class="my-3">My Projects</h1>
 
 <div class="row row-cols-lg-4 row-cols-1 row-cols-sm-2">
-    <div v-for="project in projects" :key="project.id">
-        <div class="card my-3">
-            <img class="card-img-top" src="" alt="">
-            <div class="card-body">
-                <h5 class="card-title">{{ project.name }}</h5>
-
-                <p v-if="project.type" class="type mb-3">{{ project.type.name }}</p>
-                <p class="user">Author: {{ project.user.name }}</p>
-                <span><strong>Client: </strong></span>
-                <p>{{ project.client_name }}</p>
-
-                <p v-html="truncateText(project.summary)" class="card-text"></p>
-
-                <div class="tech" v-if="project.technologies.length">
-                    <span v-for="technology in project.technologies" :key="technology.id">#{{ technology.name }} <span>  </span></span>
-                </div>
-                <div class="tech" v-else>NA</div>
-                <a class="info-btn" href="#">more info...</a>
-
-            </div>
-        </div>
-    </div>
+    <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
 </div>
 
 <div class="d-flex justify-content-center paginator my-3">
@@ -112,10 +90,7 @@ export default {
 
 <style lang="scss">
 
-.card{
-    border: 0px !important;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-}
+
 
 
 button{
@@ -123,50 +98,5 @@ button{
         min-width: 38px;
     }
 
-.type {
-    font-size: 0.8rem;
-    color: rgb(15, 176, 123);
-}
-
-.user{
-    font-size: 0.8rem;
-}
-
-.info-btn{
-    display: block;
-    text-align: right;
-    text-decoration: none;
-    color: #c187ff;
-    font-size: 0.8rem;
-    font-weight: 600;
-    &:hover{
-        color: #8d58c6;
-    }
-}
-
-.tech{
-    font-size: 0.8rem;
-    color: grey;
-    display: inline-block;
-}
-
-@media screen and (min-width: 576px ) {
-    .card-text{
-        min-height: 120px;
-    }
-    h5{
-        min-height: 48px;
-    }
-}
-
-@media screen and (min-width: 992px ) {
-    .card-text{
-        min-height: 144px;
-    }
-    h5{
-        min-height: 48px;
-    }
-
-}
 
 </style>
