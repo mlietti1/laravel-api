@@ -36,7 +36,8 @@ export default {
                     <span v-for="technology in project.technologies" :key="technology.id">#{{ technology.name }} <span>  </span></span>
                 </div>
                 <div class="tech" v-else>NA</div>
-                <a class="info-btn" href="#">more info...</a>
+                <router-link class="info-btn" :to="{name: 'detail',  params:{slug: project.slug}}">more info...</router-link>
+
 
             </div>
         </div>
